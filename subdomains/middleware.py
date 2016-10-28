@@ -4,6 +4,7 @@ import re
 
 from django.conf import settings
 from django.utils.cache import patch_vary_headers
+from django.utils.deprecation import MiddlewareMixin
 
 from subdomains.utils import get_domain
 
@@ -14,7 +15,7 @@ lower = operator.methodcaller('lower')
 UNSET = object()
 
 
-class SubdomainMiddleware(object):
+class SubdomainMiddleware(MiddlewareMixin, object):
     """
     A middleware class that adds a ``subdomain`` attribute to the current request.
     """
